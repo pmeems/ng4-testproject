@@ -1,5 +1,20 @@
-<div class="container" style="margin-top:50px">
-<p>
-  stallions-listings works!
-</p>
+<div class="container-fluid" style="margin-top:50px">
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      Het overzicht van de hengsten wordt opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van het overzicht van de hengsten.
+    </div>
+    <div class="col-md-12" *ngIf="loading===false">
+      <h1>Er zijn {{stallions.length}} hengsten beschikbaar op deze website</h1>
+      <ul class="list-inline">
+        <ng-template ngFor let-stallion [ngForOf]="stallions">
+          <li class="list-inline-item">
+            <app-stallions-list-view [stallion]="stallion"></app-stallions-list-view>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
 </div>
