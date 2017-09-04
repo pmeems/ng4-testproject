@@ -1,5 +1,6 @@
 export interface Stallion {
   $key: string;
+  $exists: any;
   name: string;
   description: string;
   short?: string;
@@ -8,6 +9,7 @@ export interface Stallion {
   breed_by?: string;
   stud_fees?: string;
   birth?: string;
+  updated?: Date;
   studbooks?: Studbook[];
   images: Image;
   owner: string;
