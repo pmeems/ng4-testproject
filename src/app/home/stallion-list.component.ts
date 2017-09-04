@@ -22,6 +22,7 @@ import {Router} from "@angular/router";
           </div>
         </div>
         <div class="clearfix"></div>
+        <p>{{stallion.updated | date:'medium'}}</p>
       </div>
     </div>`
 })
@@ -29,13 +30,14 @@ export class StallionListComponent {
 
   @Input() stallion: Stallion;
 
-  constructor (private router: Router) {}
+  constructor(private router: Router) {
+  }
 
-  private gotoStallionDetails(alias: string): void {
+  gotoStallionDetails(alias: string): void {
     this.router.navigate(["/hengsten/", alias]);
   }
 
-  private gotoStudbook(alias: string): void {
+  gotoStudbook(alias: string): void {
     SharedUtils.gotoStudbook(alias);
   }
 
