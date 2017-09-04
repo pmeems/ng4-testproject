@@ -38,9 +38,9 @@
       Er is een probleem opgetreden bij het ophalen van het overzicht van de hengsten.
     </div>
     <div class="col-md-12" *ngIf="loading===false">
-      <h4>{{stallions?.length}} gevonden hengsten</h4>
+      <h4>Nieuwste hengsten</h4>
       <ul class="list-inline">
-        <ng-template ngFor let-stallion [ngForOf]="stallions">
+        <ng-template ngFor let-stallion [ngForOf]="stallions | slice:0:10">
           <li class="list-inline-item">
             <app-stallion-list [stallion]="stallion"></app-stallion-list>
           </li>
