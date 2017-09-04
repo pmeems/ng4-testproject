@@ -7,6 +7,7 @@ import {StallionsListingsComponent} from "./stallions/list/stallions-listings.co
 import {OwnersListingsComponent} from "./owners/lists/owners-listings.component";
 import {StudbooksListingsComponent} from "./studbooks/list/studbooks-listings.component";
 import {StallionDetailsComponent} from "./stallions/details/stallion-details.component";
+import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   {path: "hengsten/:alias", component: StallionDetailsComponent},
   {path: "eigenaren", component: OwnersListingsComponent },
   {path: "stamboeken", component: StudbooksListingsComponent },
+  {path: ":alias", component: OnlyToRedirectComponent },
   {path: "not-found", component: ErrorPageComponent, data: {message: "Page not found!"}},
   {path: "**", redirectTo: "/not-found"}
 ];

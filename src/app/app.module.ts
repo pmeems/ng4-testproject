@@ -23,8 +23,9 @@ import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
 import {StudbookDetailsComponent} from "./studbooks/details/studbook-details.component";
 import {StudbooksListingsComponent} from "./studbooks/list/studbooks-listings.component";
 import {FirebaseService} from "./shared/firebase.service";
-import {LeafletModule} from "@asymmetrik/angular2-leaflet";
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {firebaseConfig} from "../environments/firebase.config";
+import { OnlyToRedirectComponent } from './only-to-redirect/only-to-redirect.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {firebaseConfig} from "../environments/firebase.config";
     OwnersListingsComponent,
     OwnerDetailsComponent,
     StudbookDetailsComponent,
-    StudbooksListingsComponent
+    StudbooksListingsComponent,
+    OnlyToRedirectComponent
   ],
   imports: [
     CommonModule,
