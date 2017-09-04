@@ -7,7 +7,7 @@
       Er is een probleem opgetreden bij het ophalen van het overzicht van de hengsten.
     </div>
     <div class="col-md-12" *ngIf="loading===false">
-      <h1>Er zijn {{stallions.length}} hengsten beschikbaar op deze website</h1>
+      <h1 class="maximize">Er zijn {{stallions.length}} hengsten beschikbaar op deze website</h1>
       <ul class="list-inline">
         <ng-template ngFor let-stallion [ngForOf]="stallions">
           <li class="list-inline-item">
