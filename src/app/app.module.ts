@@ -25,7 +25,8 @@ import {StudbooksListingsComponent} from "./studbooks/list/studbooks-listings.co
 import {FirebaseService} from "./shared/firebase.service";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {firebaseConfig} from "../environments/firebase.config";
-import { OnlyToRedirectComponent } from './only-to-redirect/only-to-redirect.component';
+import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
+import {StallionsListViewComponent} from "./stallions/list/stallions-list-view/stallions-list-view.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { OnlyToRedirectComponent } from './only-to-redirect/only-to-redirect.com
     OwnerDetailsComponent,
     StudbookDetailsComponent,
     StudbooksListingsComponent,
-    OnlyToRedirectComponent
+    OnlyToRedirectComponent,
+    StallionsListViewComponent
   ],
   imports: [
     CommonModule,
