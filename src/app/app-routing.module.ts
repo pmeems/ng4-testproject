@@ -15,8 +15,8 @@ const appRoutes: Routes = [
   {path: "hengsten/:alias", component: StallionDetailsComponent},
   {path: "eigenaren", component: OwnersListingsComponent },
   {path: "stamboeken", component: StudbooksListingsComponent },
-  {path: ":alias", component: OnlyToRedirectComponent },
   {path: "not-found", component: ErrorPageComponent, data: {message: "Page not found!"}},
+  {path: ":alias", component: OnlyToRedirectComponent },
   {path: "**", redirectTo: "/not-found"}
 ];
 

@@ -4,7 +4,7 @@
       Het overzicht van de hengst wordt opgehaald.
     </div>
     <div class="alert alert-danger" *ngIf="errorMsg">
-      Er is een probleem opgetreden bij het ophalen van de gegevens:<br />
+      Er is een probleem opgetreden bij het ophalen van de gegevens:<br/>
       {{errorMsg}}
     </div>
 
@@ -50,8 +50,11 @@
           <span *ngIf="owner.email"><dt>E-mail: </dt> <dd><a
             href="mailto:{{owner.email}}">{{owner.email}}</a></dd></span>
           <span *ngIf="owner.website"><dt>Website: </dt> <dd><a
-            href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" target="_blank">{{owner.website}}</a></dd></span>
-          <span *ngIf="owner.facebook"><dt>Facebook: </dt> <dd><a href="{{owner.facebook}}" target="_blank">Facebook pagina</a></dd></span>
+            href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{owner.website}}</a> <i
+            class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
+          <span *ngIf="owner.facebook"><dt>Facebook: </dt> <dd><a href="{{owner.facebook}}" rel="external"
+                                                                  target="_blank">Facebook pagina</a> <i
+            class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
         </dl>
 
         <div *ngIf="owner && owner.stallions.length > 1">
@@ -92,9 +95,10 @@
         <div class="midi-image col-md-12 col-xs-5 col-sm-3 advertisement">
           <p class="fancy"><span>Advertentie</span></p>
           <figure class="img-thumbnail" style="max-width: 300px">
-            <a href="https://www.scrapwebshop.nl?utm_source=tophengsten&utm_medium=cpc" target="_blank">
+            <a href="https://www.scrapwebshop.nl?utm_source=tophengsten&utm_medium=cpc" target="_blank" rel="external">
               <img src="./assets/scrapwebshop.jpg" alt="Advertentie voor Scrapwebshop.nl" class="img-responsive"/>
-              <figcaption>www.scrapwebshop.nl - Mixed-media en kaarten maken</figcaption>
+              <figcaption>www.scrapwebshop.nl - Mixed-media en kaarten maken <i class="glyphicon glyphicon-new-window"
+                                                                                title="Gaat naar een externe website"></i></figcaption>
             </a>
           </figure>
         </div>

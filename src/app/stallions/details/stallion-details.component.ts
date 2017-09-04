@@ -53,7 +53,7 @@ export class StallionDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const alias = this.route.snapshot.params["alias"];
+    const alias = this.route.snapshot.params["alias"].toLowerCase();
     this.loading = true;
     this.firebaseService.loadStallion(alias)
       .subscribe(data => {
