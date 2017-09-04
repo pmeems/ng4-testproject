@@ -4,7 +4,8 @@
       Het overzicht van de hengst wordt opgehaald.
     </div>
     <div class="alert alert-danger" *ngIf="errorMsg">
-      Er is een probleem opgetreden bij het ophalen van de gegevens van de hengst
+      Er is een probleem opgetreden bij het ophalen van de gegevens:<br />
+      {{errorMsg}}
     </div>
 
     <span *ngIf="loading===false">

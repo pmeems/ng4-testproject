@@ -58,6 +58,10 @@ export class StallionDetailsComponent implements OnInit {
     this.firebaseService.loadStallion(alias)
       .subscribe(data => {
           this.stallion = data;
+          if (!this.stallion.$exists()) {
+            this.errorMsg = `De hengst ${alias} kan niet worden gevonden.`;
+            return;
+          }
           this.loading = false;
           this.createMap(this.stallion.location);
           this.firebaseService.loadOwner(this.stallion.owner)
