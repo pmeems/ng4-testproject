@@ -1,0 +1,7 @@
+<div id="largeRotationImage" class="pull-right" *ngIf="randomStallion">
+  <img class="media-object img-rounded img-responsive" src="{{randomStallion.images.large}}" title="{{randomStallion.description | truncate : [124]}}" alt="{{randomStallion.description | truncate : [124]}}">
+  <div>
+    <a class="showPointer" title="Klik voor meer informatie over {{randomStallion.name}}" [routerLink]="['/hengsten', randomStallion.$key]">{{randomStallion.name}}</a>
+    <div class="clearfix"></div>
+  </div>
+</div>

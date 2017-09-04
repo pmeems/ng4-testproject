@@ -1,0 +1,104 @@
+<div class="container" style="margin-top:50px">
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      Het overzicht van de hengst wordt opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van de gegevens van de hengst
+    </div>
+
+    <span *ngIf="loading===false">
+    <div class="col-md-8 col-md-push-4">
+      <div class="stich-box">
+        <h1 class="text-center">{{stallion.name}}</h1>
+      </div>
+
+      <figure class="large-image"><img src="{{stallion.images.large}}"
+                                       class="img-responsive img-rounded center-block"
+                                       alt="{{stallion.name}}" title="{{stallion.name}}"/>
+      </figure>
+
+      <div class="well">
+        <img src="{{stallion.images.small}}" alt="{{stallion.name}}" width="89" height="85"
+             align="left" class="img-circle">
+        <span [innerHTML]="stallion.description"></span>
+      </div>
+
+      <div class="well">
+        <h4>Detailsgegevens</h4>
+        <dl class="dl-horizontal details">
+          <span *ngIf="stallion.height"><dt>Hoogte: </dt> <dd>{{stallion.height}}</dd></span>
+          <span *ngIf="stallion.color"><dt>Kleur: </dt> <dd>{{stallion.color}}</dd></span>
+          <span *ngIf="stallion.birth"><dt>Geboren: </dt> <dd>{{stallion.birth}}</dd></span>
+          <span *ngIf="stallion.breed_by"><dt>Fokker: </dt> <dd>{{stallion.breed_by}}</dd></span>
+          <span *ngIf="stallion.stud_fees"><dt>Dekgeld: </dt> <dd>{{stallion.stud_fees}}</dd></span>
+        </dl>
+
+        <strong>{{stallion.name}}</strong> mag dekken voor de volgende stamboeken:
+        <span *ngFor="let studbook of stallion.studbooks"><a [routerLink]="['/stamboeken', studbook.alias]">{{studbook.name}} </a></span>
+
+      </div>
+
+      <div class="well">
+        <h4>Eigenaar</h4>
+        <dl *ngIf="owner" class="dl-horizontal owner">
+          <span *ngIf="owner.stable"><dt>Stalnaam: </dt> <dd>{{owner.stable}}</dd></span>
+          <dt>Eigenaar: </dt> <dd>{{owner.name}}</dd>
+          <dt>Adres: </dt> <dd>{{owner.address}}</dd>
+          <dt>PC + Plaats: </dt> <dd>{{owner.pc}} {{owner.city}}</dd>
+          <span *ngIf="owner.email"><dt>E-mail: </dt> <dd><a
+            href="mailto:{{owner.email}}">{{owner.email}}</a></dd></span>
+          <span *ngIf="owner.website"><dt>Website: </dt> <dd><a
+            href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" target="_blank">{{owner.website}}</a></dd></span>
+          <span *ngIf="owner.facebook"><dt>Facebook: </dt> <dd><a href="{{owner.facebook}}" target="_blank">Facebook pagina</a></dd></span>
+        </dl>
+
+        <div *ngIf="owner && owner.stallions.length > 1">
+          Meer hengsten van deze eigenaar:<br/>
+          <ng-template ngFor let-otherStallion [ngForOf]="owner.stallions">
+            <a *ngIf="otherStallion.alias !== stallion.$key" [routerLink]="['/stallion', otherStallion.alias]">{{otherStallion.name}} </a>
+          </ng-template>
+        </div>
+      </div>
+
+      <!--<div class="well">-->
+      <!--Stamboekgegevens-->
+      <!--</div>-->
+
+      <div class="well" *ngIf="stallion">
+        <h4><strong>{{stallion.name}}</strong> staat ter dekking bij {{stallion.location.description}} </h4>
+        <div style="height: 300px;"
+             leaflet
+             [leafletOptions]="options"
+             [leafletPanOptions]="panOptions"
+             [leafletZoomOptions]="zoomOptions"
+             [leafletZoomPanOptions]="zoomPanOptions"
+             [leafletFitBoundsOptions]="fitBoundsOptions"
+             [leafletZoom]="10"
+             [leafletCenter]="center"
+             [leafletLayers]="markers">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4 col-md-pull-8">
+      <div class="row">
+        <div *ngFor="let midi of stallion.images.midi" class="midi-image col-md-12 col-xs-5 col-sm-3">
+          <figure class="img-thumbnail">
+            <img src="{{midi}}" alt="{{stallion.name}}" class="img-responsive"/>
+          </figure>
+        </div>
+        <div class="midi-image col-md-12 col-xs-5 col-sm-3 advertisement">
+          <p class="fancy"><span>Advertentie</span></p>
+          <figure class="img-thumbnail" style="max-width: 300px">
+            <a href="https://www.scrapwebshop.nl?utm_source=tophengsten&utm_medium=cpc" target="_blank">
+              <img src="./assets/scrapwebshop.jpg" alt="Advertentie voor Scrapwebshop.nl" class="img-responsive"/>
+              <figcaption>www.scrapwebshop.nl - Mixed-media en kaarten maken</figcaption>
+            </a>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </span>
+  </div>
+</div>

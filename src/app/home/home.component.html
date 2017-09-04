@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">Welkom bij Tophengsten.nl</h4>
+        <app-large-image-rotator *ngIf="stallions" [items]="stallions"></app-large-image-rotator>
+        <div>
+        Deze website heeft tot doel om alle dekhengsten van Nederland en België een kans te geven zich te promoten.<br/>
+        Hierboven staat 5 willekeurige hengsten. Klik er op en hun eigen pagina wordt getoond. <br/>
+        Hieronder staan de 5 nieuwste hengsten (het laatst toegevoegd) en de 5 meest bekeken hengsten.<br/>
+        Bij het <a href="hengsten.html">
+        overzicht van
+        de hengsten
+      </a> staat alle hengsten die op <b>Tophengsten.nl</b> staan. Bij het <a href="#">overzicht van de stamboeken</a>,
+        staan alle deelnemende stamboeken.
+        Op de pagina van een stamboek staan weer alle deelnemende hengsten die voor dat stamboek mogen dekken.<br/>
+        Wekelijks (soms dagelijks) worden er nieuwe hengsten en stamboeken toegevoegd, dus kom zeker regelmatig kijken!<br/>
+        Alles op de website is gratis. Maar u kunt uw hengst wel extra promoten. Voor een kleine vergoeding komt uw hengst
+        in de rij hierboven.<br/>
+        Heeft u ook een dekhengst en wilt u die op <b>Tophengsten.nl</b> toevoegen? Ga naar <a href="#">voeg uw hengst
+        toe </a>voor meer informatie.
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <br/>
+      Alle foto's en teksten zijn aangeleverd door de respectievelijke eigenaren en vallen onder het auteursrecht. <br/>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      Het overzicht van de hengsten wordt opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van het overzicht van de hengsten.
+    </div>
+    <div class="col-md-12" *ngIf="loading===false">
+      <h4>{{stallions?.length}} gevonden hengsten</h4>
+      <ul class="list-inline">
+        <ng-template ngFor let-stallion [ngForOf]="stallions">
+          <li class="list-inline-item">
+            <app-stallion-list [stallion]="stallion"></app-stallion-list>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</div>
