@@ -1,5 +1,85 @@
 <div class="container" style="margin-top:50px">
-<p>
-  owners-listing works!
-</p>
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      Het overzicht van de eigenaar wordt opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van de gegevens:<br/>
+      {{errorMsg}}
+    </div>
+
+    <span *ngIf="loading===false">
+    <div class="col-md-8 col-md-push-4">
+      <div class="stich-box">
+        <h1 class="text-center">{{owner.stable}}</h1>
+      </div>
+
+      <figure *ngIf="stallions && stallions.length >0" class="large-image">
+        <img src="{{stallions[0].images.large}}"
+             class="img-responsive img-rounded center-block"
+             alt="{{stallions[0].name}}" title="{{stallions[0].name}}"/>
+      </figure>
+
+      <div class="well" style="min-height: 9em">
+        <img src="{{owner.logo}}" alt="{{owner.stable}}" width="89" height="85"
+             align="left" class="img-circle">
+        <p [innerHTML]="owner.description"></p>
+        <br class="clearfix"/>
+      </div>
+
+
+      <div class="well">
+        <h4 *ngIf="owner.stable">{{owner.stable}}</h4>
+        <h4 *ngIf="!owner.stable">{{owner.name}}</h4>
+        <dl *ngIf="owner" class="dl-horizontal owner">
+          <dt>Eigenaar: </dt> <dd>{{owner.name}}</dd>
+          <dt>Adres: </dt> <dd>{{owner.address}}</dd>
+          <dt>PC + Plaats: </dt> <dd>{{owner.pc}} {{owner.city}}</dd>
+          <span *ngIf="owner.email"><dt>E-mail: </dt> <dd><a
+            href="mailto:{{owner.email}}">{{owner.email}}</a></dd></span>
+          <span *ngIf="owner.website"><dt>Website: </dt> <dd><a
+            href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{owner.website}}</a> <i
+            class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
+          <span *ngIf="owner.facebook"><dt>Facebook: </dt> <dd><a href="{{owner.facebook}}" rel="external"
+                                                                  target="_blank">Facebook pagina</a> <i
+            class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
+        </dl>
+      </div>
+
+      <div class="well">
+        <div *ngIf="stallions &&  stallions.length > 0">
+          Hengsten van deze eigenaar:<br/>
+          <ul class="list-inline">
+            <ng-template ngFor let-stallion [ngForOf]="stallions">
+              <li class="list-inline-item">
+                <app-stallions-list-view [stallion]="stallion"></app-stallions-list-view>
+              </li>
+            </ng-template>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 col-md-pull-8">
+      <div class="row">
+        <div *ngFor="let stallion of stallions" class="midi-image col-md-12 col-xs-5 col-sm-3">
+          <figure class="img-thumbnail" *ngIf="stallion">
+            <img src="{{stallion.images.midi[0]}}" alt="{{stallion.name}}" class="img-responsive"/>
+          </figure>
+        </div>
+        <div class="col-md-12 col-xs-5 col-sm-3 advertisement">
+          <p class="fancy"><span>Advertentie</span></p>
+          <figure class="img-thumbnail" style="max-width: 300px">
+            <a href="https://www.scrapwebshop.nl?utm_source=tophengsten&utm_medium=cpc" target="_blank" rel="external">
+              <img src="./assets/scrapwebshop.jpg" alt="Advertentie voor Scrapwebshop.nl" class="img-responsive"/>
+              <figcaption>www.scrapwebshop.nl - Mixed-media en kaarten maken <i class="glyphicon glyphicon-new-window"
+                                                                                title="Gaat naar een externe website"></i></figcaption>
+            </a>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </span>
+  </div>
 </div>

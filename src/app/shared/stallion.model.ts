@@ -36,6 +36,7 @@ export interface Owner {
   address: string;
   pc: string;
   city: string;
+  description?: string;
   email?: string;
   website?: string;
   facebook?: string;
