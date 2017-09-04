@@ -1,0 +1,16 @@
+<div class="thumbnail">
+  <img class="img-responsive img-circle" src="{{owner.logo}}"
+       title="{{owner.stable | truncate : [124]}}" alt="{{owner.stable | truncate : [124]}}"/>
+  <h1 class="text-center" title="{{owner.stable}}">{{owner.stable}}</h1>
+  <p>{{owner.name}}</p>
+  <dl>
+    <dd>{{owner.address}}</dd>
+    <dd>{{owner.pc}} {{owner.city}}</dd>
+    <span *ngIf="owner.email"><dd><a
+      href="mailto:{{owner.email}}">{{owner.email}}</a></dd></span>
+    <span *ngIf="owner.website"><dd><a
+      href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{owner.website}}</a> <i
+      class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
+  </dl>
+  <a [routerLink]="['/eigenaren', owner.$key]" rel="next">Lees meer ...</a>
+</div>

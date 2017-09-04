@@ -18,7 +18,7 @@ import {ErrorPageComponent} from "./error-page/error-page.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {StallionsListingsComponent} from "./stallions/list/stallions-listings.component";
 import {StallionDetailsComponent} from "./stallions/details/stallion-details.component";
-import {OwnersListingsComponent} from "./owners/lists/owners-listings.component";
+import {OwnersListingsComponent} from "./owners/list/owners-listings.component";
 import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
 import {StudbookDetailsComponent} from "./studbooks/details/studbook-details.component";
 import {StudbooksListingsComponent} from "./studbooks/list/studbooks-listings.component";
@@ -27,6 +27,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {firebaseConfig} from "../environments/firebase.config";
 import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 import {StallionsListViewComponent} from "./stallions/list/stallions-list-view/stallions-list-view.component";
+import { OwnersListViewComponent } from './owners/list/owners-list-view/owners-list-view.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {StallionsListViewComponent} from "./stallions/list/stallions-list-view/s
     StudbookDetailsComponent,
     StudbooksListingsComponent,
     OnlyToRedirectComponent,
-    StallionsListViewComponent
+    StallionsListViewComponent,
+    OwnersListViewComponent
   ],
   imports: [
     CommonModule,

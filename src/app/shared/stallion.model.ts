@@ -29,8 +29,10 @@ export interface Studbook {
 
 export interface Owner {
   $key: string;
+  $exists: any;
   stable: string;
   name: string;
+  logo?: string;
   address: string;
   pc: string;
   city: string;

@@ -31,4 +31,8 @@ export class FirebaseService {
     }
     return this.af.object("owners/" + ownerKey);
   }
+
+  loadOwners() {
+    return this.af.list("/owners");
+  }
 }

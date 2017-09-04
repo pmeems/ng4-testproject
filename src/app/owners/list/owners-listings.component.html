@@ -1,5 +1,20 @@
-<div class="container" style="margin-top:50px">
-  <p>
-  owners-listings works!
-</p>
+<div class="container-fluid" style="margin-top:50px">
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      Het overzicht van de eigenaren wordt opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van het overzicht van de eigenaren.
+    </div>
+    <div class="col-md-12" *ngIf="loading===false">
+      <h1 class="maximize">Er zijn {{owners.length}} eigenaren beschikbaar op deze website</h1>
+      <ul class="list-inline">
+        <ng-template ngFor let-owner [ngForOf]="owners">
+          <li class="list-inline-item">
+            <app-owners-list-view [owner]="owner"></app-owners-list-view>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import {Stallion} from "../../shared/stallion.model";
+import {Component, OnInit} from "@angular/core";
+
+import {Owner} from "../../shared/stallion.model";
 import {FirebaseService} from "../../shared/firebase.service";
 
 @Component({
@@ -9,16 +10,18 @@ import {FirebaseService} from "../../shared/firebase.service";
 })
 export class OwnersListingsComponent implements OnInit {
   private errorMsg = null;
-  private stallions: Stallion[];
+  private owners: Owner[];
   private loading = true;
 
   constructor(private firebaseService: FirebaseService) {
     this.loading = true;
-    this.firebaseService.loadStallions()
+    this.firebaseService.loadOwners()
       .subscribe(data => {
-          this.stallions = data;
+          this.owners = data;
+          // Default values:
+          this.owners.map((owner) => owner.logo == null ? owner.logo = "http://via.placeholder.com/90x90" : owner.logo);
           // Sort by name:
-          this.stallions.sort((left, right): number => {
+          this.owners.sort((left, right): number => {
             if (left.name < right.name) {
               return 1;
             }
