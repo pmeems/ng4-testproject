@@ -1,0 +1,162 @@
+<div class="container" style="margin-top:70px">
+  <div class="row">
+    <div class="alert alert-success" *ngIf="loading===true">
+      De gegevens van de hengst worden opgehaald.
+    </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      Er is een probleem opgetreden bij het ophalen van de gegevens:<br/>
+      {{errorMsg}}
+    </div>
+  </div>
+
+  <div class="row" *ngIf="loading===false && stallion">
+    <div class="col-md-12">
+      <h1>{{editMode ? 'Wijzig hengst': 'Voeg een nieuwe hengst toe'}}</h1>
+      <form class="form-horizontal" [formGroup]="stallionForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+          <legend><a (click)="generalFieldsetCollapse=!generalFieldsetCollapse" class="showPointer">Algemeen</a>
+          </legend>
+          <div class="row collapse {{generalFieldsetCollapse ? 'out': 'in'}}">
+            <div class="form-group">
+              <label class="col-md-3 control-label">Alias</label>
+              <div class="col-md-9">
+                <p class="form-control-static">{{stallion.$key}}</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Naam</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="name" formControlName="name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="color">Kleur</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="color" formControlName="color">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="height">Hoogte</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="height" formControlName="height">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="short">Korte omschrijving</label>
+              <div class="col-md-9">
+                <textarea class="form-control" rows="3" type="text" id="short" formControlName="short"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="description">Lange omschrijving</label>
+              <div class="col-md-9">
+            <textarea class="form-control" rows="7" type="text" id="description"
+                      formControlName="description"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="stud_fees">Dekgeld</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="stud_fees" formControlName="stud_fees">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="breed_by">Fokker</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="breed_by" formControlName="breed_by">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="owner">Owner</label>
+              <div class="col-md-9">
+                <select class="form-control" formControlName="owner" id="owner" [compareWith]="byOwnerAlias">
+                  <option *ngFor="let opt of owners" [ngValue]="opt"
+                          [selected]="stallion.owner.alias === opt.alias">
+                    {{opt.stable}} ({{opt.name}})
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset formGroupName="images">
+          <legend><a (click)="imagesFieldsetCollapse=!imagesFieldsetCollapse" class="showPointer">Images</a></legend>
+          <div class="row collapse {{imagesFieldsetCollapse? 'out': 'in'}}">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="large">Groot</label>
+              <div class="col-md-2">
+                <img [src]="imagePathLarge.value" alt="" class="img-responsive">
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" type="text" id="large" formControlName="large" #imagePathLarge>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-danger">X</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="small">Klein</label>
+              <div class="col-md-2">
+                <img [src]="imagePathSmall.value" alt="" class="img-responsive">
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" type="text" id="small" formControlName="small" #imagePathSmall>
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-danger">X</button>
+              </div>
+            </div>
+
+            <!--<div class="form-group" *ngFor="let midiUrl of stallionForm.get('midi'); let i = index" [formGroupName]="i">-->
+            <!--{{midiUrl}}-->
+            <!--</div>-->
+          </div>
+        </fieldset>
+
+        <fieldset formGroupName="location">
+          <legend><a (click)="locationFieldsetCollapse=!locationFieldsetCollapse" class="showPointer">Location</a>
+          </legend>
+          <div class="row collapse {{locationFieldsetCollapse? 'out': 'in'}}">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="location_description">Omschrijving</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="location_description" formControlName="description">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="location_lat">Latitude</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="location_lat" formControlName="lat">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="location_lon">Longitude</label>
+              <div class="col-md-9">
+                <input class="form-control" type="text" id="location_lon" formControlName="lon">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="row">
+          <button class="btn btn-success center-block" type="submit"
+                  [disabled]="!stallionForm.valid || !stallionForm.dirty">
+            {{editMode ? 'Wijzigen' : 'Toevoegen'}}
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

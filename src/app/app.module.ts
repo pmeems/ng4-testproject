@@ -1,7 +1,7 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {AngularFireModule} from "angularfire2";
@@ -28,6 +28,7 @@ import {firebaseConfig} from "../environments/firebase.config";
 import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 import {StallionsListViewComponent} from "./stallions/list/stallions-list-view/stallions-list-view.component";
 import { OwnersListViewComponent } from './owners/list/owners-list-view/owners-list-view.component';
+import { StallionEditComponent } from './stallions/edit/stallion-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +47,14 @@ import { OwnersListViewComponent } from './owners/list/owners-list-view/owners-l
     StudbooksListingsComponent,
     OnlyToRedirectComponent,
     StallionsListViewComponent,
-    OwnersListViewComponent
+    OwnersListViewComponent,
+    StallionEditComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),

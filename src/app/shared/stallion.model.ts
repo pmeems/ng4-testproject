@@ -12,7 +12,7 @@ export interface Stallion {
   updated?: Date;
   studbooks?: Studbook[];
   images: Image;
-  owner: string;
+  owner: Owner;
   location: Location;
 }
 
@@ -30,6 +30,7 @@ export interface Studbook {
 export interface Owner {
   $key: string;
   $exists: any;
+  alias: string;
   stable: string;
   name: string;
   logo?: string;

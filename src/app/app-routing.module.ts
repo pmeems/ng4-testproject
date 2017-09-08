@@ -9,16 +9,19 @@ import {StudbooksListingsComponent} from "./studbooks/list/studbooks-listings.co
 import {StallionDetailsComponent} from "./stallions/details/stallion-details.component";
 import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
+import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
   {path: "hengsten", component: StallionsListingsComponent},
+  {path: "hengsten/new", component: StallionEditComponent},
   {path: "hengsten/:alias", component: StallionDetailsComponent},
-  {path: "eigenaren", component: OwnersListingsComponent },
-  {path: "eigenaren/:alias", component: OwnerDetailsComponent },
-  {path: "stamboeken", component: StudbooksListingsComponent },
+  {path: "hengsten/:alias/edit", component: StallionEditComponent},
+  {path: "eigenaren", component: OwnersListingsComponent},
+  {path: "eigenaren/:alias", component: OwnerDetailsComponent},
+  {path: "stamboeken", component: StudbooksListingsComponent},
   {path: "not-found", component: ErrorPageComponent, data: {message: "Page not found!"}},
-  {path: ":alias", component: OnlyToRedirectComponent },
+  {path: ":alias", component: OnlyToRedirectComponent},
   {path: "**", redirectTo: "/not-found"}
 ];
 

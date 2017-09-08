@@ -4,6 +4,7 @@ import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFireAuth} from "angularfire2/auth";
 import {Observable} from "rxjs/Observable";
 import * as firebase from "firebase/app";
+import {Stallion} from "./stallion.model";
 
 @Injectable()
 export class FirebaseService {
@@ -34,5 +35,11 @@ export class FirebaseService {
 
   loadOwners() {
     return this.af.list("/owners");
+  }
+
+  updateStallion(alias: string, formValues: Stallion) {
+    const mergedUpdate = {};
+    mergedUpdate[ "stallions/" + alias] = formValues;
+    this.af.database.ref().update(mergedUpdate);
   }
 }

@@ -17,6 +17,7 @@ export class StallionDetailsComponent implements OnInit {
   private stallion: Stallion;
   private center: L.LatLng;
 
+  // TODO: Move to own module/component
   options = {
     layers: [
       L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "Open Street Map"})
@@ -64,16 +65,6 @@ export class StallionDetailsComponent implements OnInit {
           }
           this.loading = false;
           this.createMap(this.stallion.location);
-          this.firebaseService.loadOwner(this.stallion.owner)
-            .subscribe(
-              owner => {
-                this.owner = owner;
-              },
-              error => {
-                this.loading = false;
-                this.errorMsg = error;
-              }
-            );
         },
         error => {
           this.loading = false;

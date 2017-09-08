@@ -20,17 +20,6 @@ export class OwnersListingsComponent implements OnInit {
           this.owners = data;
           // Default values:
           this.owners.map((owner) => owner.logo == null ? owner.logo = "http://via.placeholder.com/90x90" : owner.logo);
-          // Sort by name:
-          this.owners.sort((left, right): number => {
-            if (left.name < right.name) {
-              return 1;
-            }
-            if (left.name > right.name) {
-              return -1;
-            }
-            return 0;
-          });
-
           this.loading = false;
         },
         error => {

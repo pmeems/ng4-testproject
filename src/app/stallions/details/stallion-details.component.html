@@ -42,24 +42,24 @@
 
       <div class="well">
         <h4>Eigenaar</h4>
-        <dl *ngIf="owner" class="dl-horizontal owner">
-          <span *ngIf="owner.stable"><dt>Stalnaam: </dt> <dd>{{owner.stable}}</dd></span>
-          <dt>Eigenaar: </dt> <dd>{{owner.name}}</dd>
-          <dt>Adres: </dt> <dd>{{owner.address}}</dd>
-          <dt>PC + Plaats: </dt> <dd>{{owner.pc}} {{owner.city}}</dd>
-          <span *ngIf="owner.email"><dt>E-mail: </dt> <dd><a
-            href="mailto:{{owner.email}}">{{owner.email}}</a></dd></span>
-          <span *ngIf="owner.website"><dt>Website: </dt> <dd><a
-            href="http://{{owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{owner.website}}</a> <i
+        <dl *ngIf="stallion.owner" class="dl-horizontal owner">
+          <span *ngIf="stallion.owner.stable"><dt>Stalnaam: </dt> <dd>{{stallion.owner.stable}}</dd></span>
+          <dt>Eigenaar: </dt> <dd>{{stallion.owner.name}}</dd>
+          <dt>Adres: </dt> <dd>{{stallion.owner.address}}</dd>
+          <dt>PC + Plaats: </dt> <dd>{{stallion.owner.pc}} {{stallion.owner.city}}</dd>
+          <span *ngIf="stallion.owner.email"><dt>E-mail: </dt> <dd><a
+            href="mailto:{{stallion.owner.email}}">{{stallion.owner.email}}</a></dd></span>
+          <span *ngIf="stallion.owner.website"><dt>Website: </dt> <dd><a
+            href="http://{{stallion.owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{stallion.owner.website}}</a> <i
             class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
-          <span *ngIf="owner.facebook"><dt>Facebook: </dt> <dd><a href="{{owner.facebook}}" rel="external"
+          <span *ngIf="stallion.owner.facebook"><dt>Facebook: </dt> <dd><a href="{{stallion.owner.facebook}}" rel="external"
                                                                   target="_blank">Facebook pagina</a> <i
             class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
         </dl>
 
-        <div *ngIf="owner && owner.stallions.length > 1">
+        <div *ngIf="stallion.owner && stallion.owner.stallions.length > 1">
           Meer hengsten van deze eigenaar:<br/>
-          <ng-template ngFor let-otherStallion [ngForOf]="owner.stallions">
+          <ng-template ngFor let-otherStallion [ngForOf]="stallion.owner.stallions">
             <a *ngIf="otherStallion.alias !== stallion.$key" [routerLink]="['/stallion', otherStallion.alias]">{{otherStallion.name}} </a>
           </ng-template>
         </div>
