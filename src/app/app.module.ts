@@ -27,8 +27,11 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {firebaseConfig} from "../environments/firebase.config";
 import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 import {StallionsListViewComponent} from "./stallions/list/stallions-list-view/stallions-list-view.component";
-import { OwnersListViewComponent } from './owners/list/owners-list-view/owners-list-view.component';
-import { StallionEditComponent } from './stallions/edit/stallion-edit.component';
+import {OwnersListViewComponent} from "./owners/list/owners-list-view/owners-list-view.component";
+import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
+// import {UploadModule} from "./uploads/shared/upload.module";
+import {UploadFormComponent} from "./uploads/upload-form/upload-form.component";
+import {UploadService} from "./uploads/shared/upload.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { StallionEditComponent } from './stallions/edit/stallion-edit.component'
     OnlyToRedirectComponent,
     StallionsListViewComponent,
     OwnersListViewComponent,
-    StallionEditComponent
+    StallionEditComponent,
+    UploadFormComponent
   ],
   imports: [
     CommonModule,
@@ -60,9 +64,10 @@ import { StallionEditComponent } from './stallions/edit/stallion-edit.component'
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    // UploadModule
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

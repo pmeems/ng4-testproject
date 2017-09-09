@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormArray, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FirebaseService} from "../../shared/firebase.service";
-import {Owner, Stallion} from "../../shared/stallion.model";
-import {isBoolean} from "util";
+import {Owner, Stallion, KeyValue} from "../../shared/stallion.model";
+import {SharedUtils} from "../../shared/shared-utils";
 
 @Component({
   selector: "app-stallion-edit",
@@ -17,10 +17,16 @@ export class StallionEditComponent implements OnInit {
   private errorMsg: string;
   private stallion: Stallion;
   private owners: Owner[];
+  private midiImages: KeyValue[] = [];
 
   generalFieldsetCollapse = false;
   imagesFieldsetCollapse = true;
   locationFieldsetCollapse = true;
+  midiImageNode: string;
+  smallImageNode: string;
+  largeImageNode: string;
+  showUploadLarge = false;
+  showUploadSmall = false;
 
   stallionForm: FormGroup;
 
@@ -37,6 +43,10 @@ export class StallionEditComponent implements OnInit {
       .subscribe(params => {
           this.alias = params["alias"];
           this.editMode = params["alias"] != null;
+
+          this.midiImageNode = `/stallions/${this.alias}/images/midi/`;
+          this.smallImageNode = `/stallions/${this.alias}/images/small/`;
+          this.largeImageNode = `/stallions/${this.alias}/images/large/`;
 
           // Load owners:
           this.firebaseService.loadOwners()
@@ -63,6 +73,10 @@ export class StallionEditComponent implements OnInit {
     return item1.alias === item2.alias;
   }
 
+  deleteMidi(image: KeyValue) {
+    console.log("Deleting ", image);
+  }
+
   private initFormEdit() {
     if (this.editMode) {
       this.firebaseService.loadStallion(this.alias)
@@ -72,13 +86,13 @@ export class StallionEditComponent implements OnInit {
             this.errorMsg = `De hengst ${this.alias} kan niet worden gevonden.`;
             return;
           }
-
-          const midiImages = new FormArray([]);
-          if (this.stallion["images"] && this.stallion.images["midi"]) {
-            for (const img of this.stallion.images.midi) {
-              midiImages.push(new FormControl(img));
-            }
+          if (this.stallion.images) {
+            this.midiImages = SharedUtils.convertMidiImages(this.stallion.images.midi);
+            console.log(this.midiImages);
+          } else {
+            console.log("No images");
           }
+
           this.stallionForm = new FormGroup({
             "name": new FormControl(this.stallion.name, Validators.required),
             "color": new FormControl(this.stallion.color),
@@ -87,11 +101,6 @@ export class StallionEditComponent implements OnInit {
             "description": new FormControl(this.stallion.description),
             "stud_fees": new FormControl(this.stallion.stud_fees),
             "breed_by": new FormControl(this.stallion.breed_by),
-            "images": new FormGroup({
-              "large": new FormControl(this.stallion.images.large),
-              "small": new FormControl(this.stallion.images.small),
-              "midi": midiImages
-            }),
             "location": new FormGroup({
               "description": new FormControl(this.stallion.location.description),
               "lat": new FormControl(this.stallion.location.lat),

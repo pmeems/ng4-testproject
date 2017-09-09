@@ -49,3 +49,8 @@ export interface Location {
   lon: number;
   description: string;
 }
+
+export interface KeyValue {
+  $key: string;
+  value: string;
+}

@@ -55,8 +55,8 @@
             <div class="form-group">
               <label class="col-md-3 control-label" for="description">Lange omschrijving</label>
               <div class="col-md-9">
-            <textarea class="form-control" rows="7" type="text" id="description"
-                      formControlName="description"></textarea>
+                <textarea class="form-control" rows="7" type="text" id="description"
+                          formControlName="description"></textarea>
               </div>
             </div>
 
@@ -88,38 +88,81 @@
           </div>
         </fieldset>
 
-        <fieldset formGroupName="images">
+        <fieldset>
           <legend><a (click)="imagesFieldsetCollapse=!imagesFieldsetCollapse" class="showPointer">Images</a></legend>
           <div class="row collapse {{imagesFieldsetCollapse? 'out': 'in'}}">
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="large">Groot</label>
+            <div class="form-group" *ngIf="stallion.images != null && stallion.images.large != null">
+              <label class="col-md-3 control-label">Groot</label>
               <div class="col-md-2">
-                <img [src]="imagePathLarge.value" alt="" class="img-responsive">
+                <img src="{{stallion.images.large}}" alt="" class="img-responsive">
               </div>
               <div class="col-md-6">
-                <input class="form-control" type="text" id="large" formControlName="large" #imagePathLarge>
+                <p class="form-control-static">{{stallion.images.large}}</p>
               </div>
-              <div class="col-md-1">
-                <button class="btn btn-danger">X</button>
+              <div class="col-md-1 btn-group-vertical" role="group">
+                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-trash"></i></button>
+                <button class="btn btn-primary" type="button" (click)="showUploadLarge=!showUploadLarge"><i class="glyphicon glyphicon-pencil"></i></button>
+              </div>
+            </div>
+            <div *ngIf="showUploadLarge" class="row">
+              <label class="col-md-3 control-label">&nbsp;</label>
+              <div class="col-md-9">
+                <app-upload-form
+                  [multipleFileUploads]="false"
+                  [uploadFolder]="stallion.$key"
+                  [databaseNode]="largeImageNode"
+                  [title]="'Upload nieuwe groot, bestaande wordt overschreven'"
+                ></app-upload-form>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-md-3 control-label" for="small">Klein</label>
+              <label class="col-md-3 control-label">Klein</label>
               <div class="col-md-2">
-                <img [src]="imagePathSmall.value" alt="" class="img-responsive">
+                <img src="{{stallion.images.small}}" alt="" class="img-responsive">
               </div>
               <div class="col-md-6">
-                <input class="form-control" type="text" id="small" formControlName="small" #imagePathSmall>
+                <p class="form-control-static">{{stallion.images.small}}</p>
               </div>
-              <div class="col-md-1">
-                <button class="btn btn-danger">X</button>
+              <div class="col-md-1 btn-group-vertical" role="group">
+                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-trash"></i></button>
+                <button class="btn btn-primary" type="button" (click)="showUploadSmall=!showUploadSmall"><i class="glyphicon glyphicon-pencil"></i></button>
+              </div>
+            </div>
+            <div class="row" *ngIf="showUploadSmall">
+              <label class="col-md-3 control-label">&nbsp;</label>
+              <div class="col-md-9">
+                <app-upload-form
+                  [multipleFileUploads]="false"
+                  [uploadFolder]="stallion.$key"
+                  [databaseNode]="smallImageNode"
+                  [title]="'Upload nieuwe klein, bestaande wordt overschreven'"
+                ></app-upload-form>
               </div>
             </div>
 
-            <!--<div class="form-group" *ngFor="let midiUrl of stallionForm.get('midi'); let i = index" [formGroupName]="i">-->
-            <!--{{midiUrl}}-->
-            <!--</div>-->
+            <div class="form-group" *ngFor="let midiImage of midiImages;">
+              <label class="col-md-3 control-label">Midi {{i}}</label>
+              <div class="col-md-2">
+                <img src="{{midiImage.value}}" alt="{{midiImage.$key}}" class="img-responsive">
+              </div>
+              <div class="col-md-6">
+                <p class="form-control-static">{{midiImage.value}}</p>
+              </div>
+              <div class="col-md-1 btn-group-vertical" role="group">
+                <button class="btn btn-danger" type="button" (click)="deleteMidi(midiImage)"><i class="glyphicon glyphicon-trash"></i></button>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-md-3 control-label">&nbsp;</label>
+              <div class="col-md-9">
+                <app-upload-form
+                  [multipleFileUploads]="true"
+                  [uploadFolder]="stallion.$key"
+                  [databaseNode]="midiImageNode"
+                  [title]="'Upload nieuwe midi'"></app-upload-form>
+              </div>
+            </div>
           </div>
         </fieldset>
 

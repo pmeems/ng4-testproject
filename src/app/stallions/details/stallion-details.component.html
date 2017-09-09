@@ -87,9 +87,9 @@
     </div>
     <div class="col-md-4 col-md-pull-8">
       <div class="row">
-        <div *ngFor="let midi of stallion.images.midi" class="midi-image col-md-12 col-xs-5 col-sm-3">
+        <div *ngFor="let midi of midiImages" class="midi-image col-md-12 col-xs-5 col-sm-3">
           <figure class="img-thumbnail">
-            <img src="{{midi}}" alt="{{stallion.name}}" class="img-responsive"/>
+            <img src="{{midi.value}}" alt="{{stallion.name}}" class="img-responsive"/>
           </figure>
         </div>
         <div class="col-md-12 col-xs-5 col-sm-3 advertisement">

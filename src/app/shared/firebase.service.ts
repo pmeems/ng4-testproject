@@ -38,8 +38,10 @@ export class FirebaseService {
   }
 
   updateStallion(alias: string, formValues: Stallion) {
+    console.log("updateStallion: ", formValues);
     const mergedUpdate = {};
     mergedUpdate[ "stallions/" + alias] = formValues;
-    this.af.database.ref().update(mergedUpdate);
+    // this.af.database.ref().update(mergedUpdate);
+    this.af.object("stallions/" + alias).update(formValues);
   }
 }
