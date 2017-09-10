@@ -7,20 +7,25 @@
       Er is een probleem opgetreden bij het ophalen van de gegevens:<br/>
       {{errorMsg}}
     </div>
+    <div class="alert alert-danger" *ngIf="loading===false && loggedIn===false">
+      Je bent niet ingelogd!
+    </div>
   </div>
 
-  <div class="row" *ngIf="loading===false && stallion">
+  <div class="row" *ngIf="loading===false && stallionForm && loggedIn === true">
     <div class="col-md-12">
       <h1>{{editMode ? 'Wijzig hengst': 'Voeg een nieuwe hengst toe'}}</h1>
+      <div> {{ (user | async)?.uid }}</div>
       <form class="form-horizontal" [formGroup]="stallionForm" (ngSubmit)="onSubmit()">
         <fieldset>
           <legend><a (click)="generalFieldsetCollapse=!generalFieldsetCollapse" class="showPointer">Algemeen</a>
           </legend>
           <div class="row collapse {{generalFieldsetCollapse ? 'out': 'in'}}">
             <div class="form-group">
-              <label class="col-md-3 control-label">Alias</label>
+              <label class="col-md-3 control-label" for="key">Alias</label>
               <div class="col-md-9">
-                <p class="form-control-static">{{stallion.$key}}</p>
+                <p *ngIf="editMode" class="form-control-static">{{stallion.$key}}</p>
+                <input *ngIf="!editMode" class="form-control" type="text" id="key" #newKeyElement>
               </div>
             </div>
 
@@ -78,8 +83,7 @@
               <label class="col-md-3 control-label" for="owner">Owner</label>
               <div class="col-md-9">
                 <select class="form-control" formControlName="owner" id="owner" [compareWith]="byOwnerAlias">
-                  <option *ngFor="let opt of owners" [ngValue]="opt"
-                          [selected]="stallion.owner.alias === opt.alias">
+                  <option *ngFor="let opt of owners" [ngValue]="opt">
                     {{opt.stable}} ({{opt.name}})
                   </option>
                 </select>
@@ -88,10 +92,10 @@
           </div>
         </fieldset>
 
-        <fieldset>
+        <fieldset *ngIf="editMode">
           <legend><a (click)="imagesFieldsetCollapse=!imagesFieldsetCollapse" class="showPointer">Images</a></legend>
           <div class="row collapse {{imagesFieldsetCollapse? 'out': 'in'}}">
-            <div class="form-group" *ngIf="stallion.images != null && stallion.images.large != null">
+            <div class="form-group">
               <label class="col-md-3 control-label">Groot</label>
               <div class="col-md-2">
                 <img src="{{stallion.images.large}}" alt="" class="img-responsive">
@@ -99,9 +103,9 @@
               <div class="col-md-6">
                 <p class="form-control-static">{{stallion.images.large}}</p>
               </div>
-              <div class="col-md-1 btn-group-vertical" role="group">
-                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-trash"></i></button>
-                <button class="btn btn-primary" type="button" (click)="showUploadLarge=!showUploadLarge"><i class="glyphicon glyphicon-pencil"></i></button>
+              <div class="col-md-1" role="group">
+                <button class="btn btn-primary" type="button" (click)="showUploadLarge=!showUploadLarge"><i
+                  class="glyphicon glyphicon-pencil"></i></button>
               </div>
             </div>
             <div *ngIf="showUploadLarge" class="row">
@@ -124,9 +128,9 @@
               <div class="col-md-6">
                 <p class="form-control-static">{{stallion.images.small}}</p>
               </div>
-              <div class="col-md-1 btn-group-vertical" role="group">
-                <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-trash"></i></button>
-                <button class="btn btn-primary" type="button" (click)="showUploadSmall=!showUploadSmall"><i class="glyphicon glyphicon-pencil"></i></button>
+              <div class="col-md-1" role="group">
+                <button class="btn btn-primary" type="button" (click)="showUploadSmall=!showUploadSmall"><i
+                  class="glyphicon glyphicon-pencil"></i></button>
               </div>
             </div>
             <div class="row" *ngIf="showUploadSmall">
@@ -141,18 +145,21 @@
               </div>
             </div>
 
-            <div class="form-group" *ngFor="let midiImage of midiImages;">
-              <label class="col-md-3 control-label">Midi {{i}}</label>
-              <div class="col-md-2">
-                <img src="{{midiImage.value}}" alt="{{midiImage.$key}}" class="img-responsive">
-              </div>
-              <div class="col-md-6">
-                <p class="form-control-static">{{midiImage.value}}</p>
-              </div>
-              <div class="col-md-1 btn-group-vertical" role="group">
-                <button class="btn btn-danger" type="button" (click)="deleteMidi(midiImage)"><i class="glyphicon glyphicon-trash"></i></button>
+            <div class="row">
+              <label class="col-md-3 control-label">Midi</label>
+              <div class="col-md-9">
+                <div class="thumbnail" *ngFor="let midiImage of midiImages;">
+                  <img src="{{midiImage.value.url}}" alt="{{midiImage.$key}}">
+                  <div class="caption">
+                    <strong>{{midiImage.value.name}}</strong>
+                    <button class="btn btn-danger pull-right" type="button" (click)="deleteMidi(midiImage)"><i
+                      class="glyphicon glyphicon-trash"></i></button>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
               </div>
             </div>
+
             <div class="row">
               <label class="col-md-3 control-label">&nbsp;</label>
               <div class="col-md-9">

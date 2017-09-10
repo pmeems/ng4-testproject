@@ -54,3 +54,14 @@ export interface KeyValue {
   $key: string;
   value: string;
 }
+
+export interface KeyStorageImage {
+  $key: string;
+  value: StorageImage;
+}
+
+export interface StorageImage {
+  name: string;
+  url: string;
+  progress: number;
+}

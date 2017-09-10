@@ -1,9 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 
-import {KeyValue, Location, Owner, Stallion} from "../../shared/stallion.model";
+import {KeyStorageImage, Location, Owner, Stallion} from "../../shared/stallion.model";
 import {FirebaseService} from "../../shared/firebase.service";
 import * as L from "leaflet";
+import * as _ from "lodash";
+
 import {SharedUtils} from "../../shared/shared-utils";
 
 @Component({
@@ -17,7 +19,7 @@ export class StallionDetailsComponent implements OnInit {
   private errorMsg: string;
   private stallion: Stallion;
   private center: L.LatLng;
-  private midiImages: KeyValue[];
+  private midiImages: KeyStorageImage[];
 
   // TODO: Move to own module/component
   options = {
@@ -66,7 +68,7 @@ export class StallionDetailsComponent implements OnInit {
             return;
           }
 
-          this.midiImages = SharedUtils.convertMidiImages(this.stallion.images.midi);
+          this.midiImages = _.shuffle(SharedUtils.convertMidiImages(this.stallion.images.midi));
 
           this.loading = false;
           this.createMap(this.stallion.location);
