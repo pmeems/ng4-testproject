@@ -10,9 +10,11 @@ import {StallionDetailsComponent} from "./stallions/details/stallion-details.com
 import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.component";
 import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
 import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
+import {AdminComponent} from "./admin/admin.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
+  {path: "admin", component: AdminComponent},
   {path: "hengsten", component: StallionsListingsComponent},
   {path: "hengsten/new", component: StallionEditComponent},
   {path: "hengsten/:alias", component: StallionDetailsComponent},

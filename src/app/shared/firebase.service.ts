@@ -11,7 +11,7 @@ export class FirebaseService {
   user: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth, private af: AngularFireDatabase) {
-    this.user = this.afAuth.authState; // TODO
+    this.user = this.afAuth.authState;
   }
 
   public loadStallions() {
@@ -40,8 +40,16 @@ export class FirebaseService {
   updateStallion(alias: string, formValues: Stallion) {
     console.log("updateStallion: ", formValues);
     const mergedUpdate = {};
-    mergedUpdate[ "stallions/" + alias] = formValues;
+    mergedUpdate["stallions/" + alias] = formValues;
     // this.af.database.ref().update(mergedUpdate);
     this.af.object("stallions/" + alias).update(formValues);
+  }
+
+  login() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 }

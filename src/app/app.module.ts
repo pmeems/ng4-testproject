@@ -32,6 +32,7 @@ import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
 // import {UploadModule} from "./uploads/shared/upload.module";
 import {UploadFormComponent} from "./uploads/upload-form/upload-form.component";
 import {UploadService} from "./uploads/shared/upload.service";
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {UploadService} from "./uploads/shared/upload.service";
     StallionsListViewComponent,
     OwnersListViewComponent,
     StallionEditComponent,
-    UploadFormComponent
+    UploadFormComponent,
+    AdminComponent
   ],
   imports: [
     CommonModule,
