@@ -1,13 +1,17 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+
+import * as _ from "lodash";
+
 import {Stallion} from "../shared/stallion.model";
 import {SharedUtils} from "../shared/shared-utils";
-import {Router} from "@angular/router";
 
 @Component({
   selector: "app-stallion-list",
   template: `
-    <div class="thumbnail" style="min-height: 252px">
-      <img role="button" (click)="gotoStallionDetails(stallion.$key);" src="{{stallion.images.midi[0]}}"
+    <div class="thumbnail" style="min-height: 240px">
+      <img role="button" (click)="gotoStallionDetails(stallion.$key);"
+           src="{{randomImage}}"
            title="{{stallion.short | truncate : [124]}}" alt="{{stallion.short | truncate : [124]}}">
       <div class="caption">
         <h4>{{stallion.name}}</h4>
@@ -18,19 +22,31 @@ import {Router} from "@angular/router";
                     {{studbook.name}}</span>
           </div>
           <div class="col-sm-4">
-            <button class="btn btn-primary pull-right" (click)="gotoStallionDetails(stallion.$key);">Details</button>
+            <a class="btn btn-primary pull-right" [routerLink]="['/hengsten', stallion.$key]" rel="next">Lees meer ...</a>
           </div>
         </div>
-        <div class="clearfix"></div>
-        <p>{{stallion.updated | date:'medium'}}</p>
+        <div class="clearfix" *ngIf="stallion.updated">
+          <p>{{stallion.updated | date:'medium'}}</p>
+        </div>
       </div>
     </div>`
 })
-export class StallionListComponent {
-
+export class StallionListComponent implements OnInit {
   @Input() stallion: Stallion;
+  randomImage: string;
 
   constructor(private router: Router) {
+  }
+
+  ngOnInit() {
+    console.log(this.stallion);
+    // Use timeout hack (https://github.com/angular/angular/issues/17572)
+    setTimeout(() => this.randomImage = this.getRandomMidiImage(), 0);
+  }
+
+  getRandomMidiImage(): string {
+    const midiImages = _.shuffle(SharedUtils.convertMidiImages(this.stallion.images.midi));
+    return midiImages[0].value.url;
   }
 
   gotoStallionDetails(alias: string): void {
