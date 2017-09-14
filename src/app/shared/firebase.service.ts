@@ -52,4 +52,9 @@ export class FirebaseService {
   logout() {
     this.afAuth.auth.signOut();
   }
+
+  addStallion(alias: string, formValues: Stallion): any {
+    console.log("addStallion: ", formValues);
+    return this.af.database.ref().child("stallions/" + alias).set(formValues);
+  }
 }

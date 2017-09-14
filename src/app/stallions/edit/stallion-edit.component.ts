@@ -87,8 +87,11 @@ export class StallionEditComponent implements OnInit {
     } else {
       // Get key from form
       console.log("newKey: ", this.newKey.nativeElement.value);
-      // this.firebaseService.addStallion(this.alias, this.stallionForm.value);
-      // this.router.navigate(["/hengsten/", this.alias, "/edit/"]);
+      this.alias = this.newKey.nativeElement.value;
+      this.firebaseService.addStallion(this.alias, this.stallionForm.value)
+        .subscribe(() => {
+          this.router.navigate(["/hengsten/", this.alias, "/edit/"]);
+        });
     }
   }
 
@@ -107,10 +110,12 @@ export class StallionEditComponent implements OnInit {
       "name": new FormControl("", Validators.required),
       "color": new FormControl(""),
       "height": new FormControl(""),
+      "birth": new FormControl(""),
       "short": new FormControl(""),
       "description": new FormControl(""),
       "stud_fees": new FormControl(""),
       "breed_by": new FormControl(""),
+      "copyright": new FormControl(""),
       "location": new FormGroup({
         "description": new FormControl(""),
         "lat": new FormControl(""),
@@ -141,10 +146,12 @@ export class StallionEditComponent implements OnInit {
           "name": new FormControl(this.stallion.name, Validators.required),
           "color": new FormControl(this.stallion.color),
           "height": new FormControl(this.stallion.height),
+          "birth": new FormControl(this.stallion.birth),
           "short": new FormControl(this.stallion.short),
           "description": new FormControl(this.stallion.description),
           "stud_fees": new FormControl(this.stallion.stud_fees),
           "breed_by": new FormControl(this.stallion.breed_by),
+          "copyright": new FormControl(this.stallion.copyright),
           "location": new FormGroup({
             "description": new FormControl(this.stallion.location.description),
             "lat": new FormControl(this.stallion.location.lat),

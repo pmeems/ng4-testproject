@@ -19,25 +19,35 @@
                                        alt="{{stallion.name}}" title="{{stallion.name}}"/>
       </figure>
 
-      <div class="well">
+      <div class="well" id="description">
         <img src="{{stallion.images.small}}" alt="{{stallion.name}}" width="89" height="85"
              align="left" class="img-circle">
         <span [innerHTML]="stallion.description"></span>
+        <small *ngIf="stallion.copyright" class="text-muted credit pull-right"><i
+          class="glyphicon glyphicon-copyright-mark"></i> Tekst en fotografie {{stallion.copyright}} </small>
       </div>
 
       <div class="well">
-        <h4>Detailsgegevens</h4>
-        <dl class="dl-horizontal details">
-          <span *ngIf="stallion.height"><dt>Hoogte: </dt> <dd>{{stallion.height}}</dd></span>
-          <span *ngIf="stallion.color"><dt>Kleur: </dt> <dd>{{stallion.color}}</dd></span>
-          <span *ngIf="stallion.birth"><dt>Geboren: </dt> <dd>{{stallion.birth}}</dd></span>
-          <span *ngIf="stallion.breed_by"><dt>Fokker: </dt> <dd>{{stallion.breed_by}}</dd></span>
-          <span *ngIf="stallion.stud_fees"><dt>Dekgeld: </dt> <dd>{{stallion.stud_fees}}</dd></span>
-        </dl>
-
-        <strong>{{stallion.name}}</strong> mag dekken voor de volgende stamboeken:
-        <span *ngFor="let studbook of stallion.studbooks"><a [routerLink]="['/stamboeken', studbook.alias]">{{studbook.name}} </a></span>
-
+        <div class="row">
+          <div class="col-md-8 col-sm-12">
+            <h4>Detailsgegevens</h4>
+            <dl class="dl-horizontal details">
+              <span *ngIf="stallion.height"><dt>Hoogte: </dt> <dd>{{stallion.height}}</dd></span>
+              <span *ngIf="stallion.color"><dt>Kleur: </dt> <dd>{{stallion.color}}</dd></span>
+              <span *ngIf="stallion.birth"><dt>Geboren: </dt> <dd>{{stallion.birth}}</dd></span>
+              <span *ngIf="stallion.breed_by"><dt>Fokker: </dt> <dd>{{stallion.breed_by}}</dd></span>
+              <span *ngIf="stallion.stud_fees"><dt>Dekgeld: </dt> <dd>{{stallion.stud_fees}}</dd></span>
+            </dl>
+            <strong>{{stallion.name}}</strong> mag dekken voor de volgende stamboeken:
+            <span *ngFor="let studbook of stallion.studbooks"><a [routerLink]="['/stamboeken', studbook.alias]">{{studbook.name}} </a></span>
+          </div>
+          <div class="col-md-4 hidden-sm advertisement">
+            <p class="fancy"><span>Advertentie</span></p>
+            <div class="adsense center-block">
+              <ng-adsense></ng-adsense>
+             </div>
+          </div>
+        </div>
       </div>
 
       <div class="well">
@@ -50,17 +60,19 @@
           <span *ngIf="stallion.owner.email"><dt>E-mail: </dt> <dd><a
             href="mailto:{{stallion.owner.email}}">{{stallion.owner.email}}</a></dd></span>
           <span *ngIf="stallion.owner.website"><dt>Website: </dt> <dd><a
-            href="http://{{stallion.owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external" target="_blank">{{stallion.owner.website}}</a> <i
+            href="http://{{stallion.owner.website}}?utm_source=tophengsten&utm_medium=cpc" rel="external"
+            target="_blank">{{stallion.owner.website}}</a> <i
             class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
-          <span *ngIf="stallion.owner.facebook"><dt>Facebook: </dt> <dd><a href="{{stallion.owner.facebook}}" rel="external"
-                                                                  target="_blank">Facebook pagina</a> <i
+          <span *ngIf="stallion.owner.facebook"><dt>Facebook: </dt> <dd><a href="{{stallion.owner.facebook}}"
+                                                                           rel="external"
+                                                                           target="_blank">Facebook pagina</a> <i
             class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></dd></span>
         </dl>
 
         <div *ngIf="stallion.owner && stallion.owner.stallions.length > 1">
           Meer hengsten van deze eigenaar:<br/>
           <ng-template ngFor let-otherStallion [ngForOf]="stallion.owner.stallions">
-            <a *ngIf="otherStallion.alias !== stallion.$key" [routerLink]="['/stallion', otherStallion.alias]">{{otherStallion.name}} </a>
+            <a *ngIf="otherStallion.alias !== stallion.$key" [routerLink]="['/hengsten', otherStallion.alias]">{{otherStallion.name}} </a>
           </ng-template>
         </div>
       </div>
@@ -70,7 +82,7 @@
       <!--</div>-->
 
       <div class="well" *ngIf="stallion">
-        <h4><strong>{{stallion.name}}</strong> staat ter dekking bij {{stallion.location.description}} </h4>
+        <h4><strong>{{stallion.name}}</strong> staat ter dekking {{stallion.location.description}} </h4>
         <div style="height: 300px;"
              leaflet
              [leafletOptions]="options"
