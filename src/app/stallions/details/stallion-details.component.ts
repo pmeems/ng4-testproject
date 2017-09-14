@@ -58,34 +58,38 @@ export class StallionDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const alias = this.route.snapshot.params["alias"].toLowerCase();
-    this.loading = true;
-    this.firebaseService.loadStallion(alias)
-      .subscribe(data => {
-          this.stallion = data;
-          if (!this.stallion.$exists()) {
-            this.errorMsg = `De hengst ${alias} kan niet worden gevonden.`;
-            return;
-          }
+    this.route.params
+      .subscribe(params => {
+        const alias = params["alias"].toLowerCase();
+        this.loading = true;
+        this.firebaseService.loadStallion(alias)
+          .subscribe(data => {
+              this.stallion = data;
+              if (!this.stallion.$exists()) {
+                this.errorMsg = `De hengst ${alias} kan niet worden gevonden.`;
+                return;
+              }
+              this.midiImages = _.shuffle(SharedUtils.convertMidiImages(this.stallion.images.midi));
 
-          this.midiImages = _.shuffle(SharedUtils.convertMidiImages(this.stallion.images.midi));
-
-          this.loading = false;
-          this.createMap(this.stallion.location);
-        },
-        error => {
-          this.loading = false;
-          this.errorMsg = error;
-          console.log(error);
-        },
-        () => {
-          // TODO: Never gets called:
-          this.loading = false;
-          console.log("In complete");
-        });
+              this.loading = false;
+              this.createMap(this.stallion.location);
+            },
+            error => {
+              this.loading = false;
+              this.errorMsg = error;
+              console.log(error);
+            },
+            () => {
+              // TODO: Never gets called:
+              this.loading = false;
+              console.log("In complete");
+            });
+      });
   }
 
   private createMap(location: Location) {
+    // Reset:
+    this.markers = [];
     this.center = L.latLng([location.lat, location.lon]);
     const marker = L.marker(
       this.center,
