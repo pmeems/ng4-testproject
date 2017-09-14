@@ -221,6 +221,7 @@ figure.large-image img {
 
 .advertisement {
   max-width: 300px;
+  color: $blue5;
 }
 .fancy {
   overflow: hidden;
@@ -235,8 +236,8 @@ figure.large-image img {
   $linesHeight: 7px;
   content: "";
   position: absolute;
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
+  border-bottom: 1px solid $blue2;
+  border-top: 1px solid $blue2;
   width: 300px;
   height: $linesHeight;
   top: 50%;

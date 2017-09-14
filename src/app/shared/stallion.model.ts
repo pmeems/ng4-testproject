@@ -14,6 +14,7 @@ export interface Stallion {
   images: Image;
   owner: Owner;
   location: Location;
+  copyright: string;
 }
 
 export interface Image {
