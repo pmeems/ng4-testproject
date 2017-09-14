@@ -3,5 +3,5 @@
        title="{{stallion.short | truncate : [124]}}" alt="{{stallion.short | truncate : [124]}}"/>
   <h1 class="text-center" title="{{stallion.name}}">{{stallion.name}}</h1>
   <p [innerHtml]="stallion.short | truncate : [124]"></p>
-  <a [routerLink]="['/hengsten', stallion.$key]" rel="next">Lees meer ...</a>
+  <a class="btn btn-primary pull-right" [routerLink]="['/hengsten', stallion.$key]" rel="next">Lees meer ...</a>
 </div>
