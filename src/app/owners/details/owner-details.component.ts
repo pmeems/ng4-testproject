@@ -30,14 +30,16 @@ export class OwnerDetailsComponent implements OnInit {
           // Default values:
           this.setDefaultValues();
 
-          this.owner.stallions.forEach((stallion) => {
-            this.firebaseService.loadStallion(stallion.alias)
-              .subscribe((fullStallion) => {
-                if (fullStallion.$exists()) {
-                  this.stallions.push(fullStallion);
-                }
-              })
-          });
+          if (this.owner.stallions && this.owner.stallions.length > 0) {
+            this.owner.stallions.forEach((stallion) => {
+              this.firebaseService.loadStallion(stallion.alias)
+                .subscribe((fullStallion) => {
+                  if (fullStallion.$exists()) {
+                    this.stallions.push(fullStallion);
+                  }
+                })
+            });
+          }
           this.loading = false;
         },
         error => {

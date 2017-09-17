@@ -15,7 +15,6 @@
   <div class="row" *ngIf="loading===false && stallionForm && loggedIn === true">
     <div class="col-md-12">
       <h1>{{editMode ? 'Wijzig hengst': 'Voeg een nieuwe hengst toe'}}</h1>
-      <div> {{ (user | async)?.uid }}</div>
       <form class="form-horizontal" [formGroup]="stallionForm" (ngSubmit)="onSubmit()">
         <fieldset>
           <legend><a (click)="generalFieldsetCollapse=!generalFieldsetCollapse" class="showPointer">Algemeen</a>

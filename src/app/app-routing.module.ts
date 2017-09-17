@@ -11,6 +11,7 @@ import {OnlyToRedirectComponent} from "./only-to-redirect/only-to-redirect.compo
 import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
 import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
 import {AdminComponent} from "./admin/admin.component";
+import {OwnerEditComponent} from "./owners/edit/owner-edit.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
@@ -20,7 +21,9 @@ const appRoutes: Routes = [
   {path: "hengsten/:alias", component: StallionDetailsComponent},
   {path: "hengsten/:alias/edit", component: StallionEditComponent},
   {path: "eigenaren", component: OwnersListingsComponent},
+  {path: "eigenaren/new", component: OwnerEditComponent},
   {path: "eigenaren/:alias", component: OwnerDetailsComponent},
+  {path: "eigenaren/:alias/edit", component: OwnerEditComponent},
   {path: "stamboeken", component: StudbooksListingsComponent},
   {path: "not-found", component: ErrorPageComponent, data: {message: "Page not found!"}},
   {path: ":alias", component: OnlyToRedirectComponent},

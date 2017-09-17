@@ -34,6 +34,7 @@ import {UploadFormComponent} from "./uploads/upload-form/upload-form.component";
 import {UploadService} from "./uploads/shared/upload.service";
 import { AdminComponent } from "./admin/admin.component";
 import {AdsenseModule} from "ng2-adsense";
+import { OwnerEditComponent } from './owners/edit/owner-edit.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {AdsenseModule} from "ng2-adsense";
     OwnersListViewComponent,
     StallionEditComponent,
     UploadFormComponent,
-    AdminComponent
+    AdminComponent,
+    OwnerEditComponent
   ],
   imports: [
     CommonModule,

@@ -46,8 +46,8 @@
         </dl>
       </div>
 
-      <div class="well">
-        <div *ngIf="stallions &&  stallions.length > 0">
+      <div class="well" *ngIf="stallions &&  stallions.length > 0">
+        <div>
           Hengsten van deze eigenaar:<br/>
           <ul class="list-inline">
             <ng-template ngFor let-stallion [ngForOf]="stallions">
@@ -62,7 +62,7 @@
     </div>
 
     <div class="col-md-4 col-md-pull-8">
-      <div class="row">
+      <div class="row" *ngIf="stallions &&  stallions.length > 0">
         <div *ngFor="let stallion of stallions" class="midi-image col-md-12 col-xs-5 col-sm-3">
           <figure class="img-thumbnail" *ngIf="stallion">
             <img src="{{stallion.images.midi[0]}}" alt="{{stallion.name}}" class="img-responsive"/>

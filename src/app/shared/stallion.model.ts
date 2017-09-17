@@ -9,7 +9,7 @@ export interface Stallion {
   breed_by?: string;
   stud_fees?: string;
   birth?: string;
-  updated?: Date;
+  updated?: any;
   studbooks?: Studbook[];
   images: Image;
   owner: Owner;
@@ -32,17 +32,20 @@ export interface Owner {
   $key: string;
   $exists: any;
   alias: string;
-  stable: string;
   name: string;
-  logo?: string;
+  stable: string;
   address: string;
   pc: string;
   city: string;
+  country: string;
+  phone: string;
   description?: string;
   email?: string;
   website?: string;
   facebook?: string;
+  logo?: string;
   stallions: { name: string, alias: string }[];
+  updated?: any;
 }
 
 export interface Location {
