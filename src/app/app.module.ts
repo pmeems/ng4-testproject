@@ -32,9 +32,10 @@ import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
 // import {UploadModule} from "./uploads/shared/upload.module";
 import {UploadFormComponent} from "./uploads/upload-form/upload-form.component";
 import {UploadService} from "./uploads/shared/upload.service";
-import { AdminComponent } from "./admin/admin.component";
+import {AdminComponent} from "./admin/admin.component";
 import {AdsenseModule} from "ng2-adsense";
-import { OwnerEditComponent } from './owners/edit/owner-edit.component';
+import {OwnerEditComponent} from "./owners/edit/owner-edit.component";
+import {ReadmeComponent} from "./readme/readme.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { OwnerEditComponent } from './owners/edit/owner-edit.component';
     StallionEditComponent,
     UploadFormComponent,
     AdminComponent,
-    OwnerEditComponent
+    OwnerEditComponent,
+    ReadmeComponent
   ],
   imports: [
     CommonModule,
@@ -71,11 +73,7 @@ import { OwnerEditComponent } from './owners/edit/owner-edit.component';
     AngularFireAuthModule,
     LeafletModule.forRoot(),
     AdsenseModule.forRoot({
-      adClient: "ca-pub-2511469677990959",
-      adSlot: 1064091315,
-      width: 250,
-      height: 250,
-      display: "inline-block"
+      adClient: "ca-pub-2511469677990959"
     })
   ],
   providers: [FirebaseService, UploadService],

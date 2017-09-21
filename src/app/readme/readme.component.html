@@ -1,0 +1,113 @@
+<div class="container" style="margin-top:70px">
+  <div class="row">
+    <div class="stich-box">
+      <h1 class="text-center">Voeg uw hengst gratis toe!</h1>
+    </div>
+    <div class="well col-md-8">
+      Om uw hengst zo optimimaal mogelijk op deze site te kunnen presenteren hebben we het volgende nodig:
+      <ul>
+        <li>
+          <strong>Tekst voor de detailpagina van de hengst.</strong>
+          <a [routerLink]="['/hengsten/tuareg']" rel="external" target="_blank">Voorbeeld</a>
+          <i class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i>
+          <ol>
+            <li>Omschrijving van de hengst. Tussen 100 en 200 woorden. Deze tekst wordt gebruikt als omschrijving in
+              het
+              eerste blok.
+            </li>
+            <li>Korte omschrijving, maximaal 128 karakters. Deze tekst wordt gebruikt bij het overzicht van de
+              hengsten.
+              <a [routerLink]="['/hengsten']" rel="external" target="_blank">Voorbeeld</a>
+              <i class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i></li>
+            <li>Hoogte</li>
+            <li>Kleur</li>
+            <li>Geboortedatum</li>
+            <li>Fokker</li>
+            <li>Dekgeld (optioneel)</li>
+            <li>De stamboeken waar de hengst voor mag dekken.</li>
+            <li>Adres waar de hengst staat.</li>
+          </ol>
+        <li>
+          <strong>Foto's</strong>. We hebben veel foto's in goede kwaliteit nodig:
+          <ol>
+            <li>Grote foto, breedte 655 tot 750 pixels, hoogte 280 tot 350 pixels, deze komt bovenaan de pagina te
+              staan.
+            </li>
+            <li>3 tot 6 foto's met een breedte van 185 tot 260 pixels en een hoogte van 145 tot 165 pixels. Deze
+              foto's
+              komen aan de linkerkant van de pagina of onderaan als de pagina op een klein scherm wordt getoond.
+            </li>
+            <li>Kleine foto, 90*90 pixels. Deze wordt op verschillende pagina's getoond.</li>
+            <li>Copyright tekst. Bijv. <i>Tekst en fotografie Lauren Claessens, stoeterij Wilgenhof</i></li>
+            <li>Optioneel: digitale (gescant, gefotografeerd) versie van het stamboekpapier.</li>
+          </ol>
+        </li>
+        <li>
+          <strong>Gegevens van de eigenaar</strong>
+          <a [routerLink]="['/eigenaren/stal-laureas']" rel="external" target="_blank">Voorbeeld</a>
+          <i class="glyphicon glyphicon-new-window" title="Gaat naar een externe website"></i>
+          <ol>
+            <li>Logo, breedte 90 tot 200 pixels, hoogte 90 tot 120.</li>
+            <li>Omschrijving, vrije tekst. Maximaal 150 woorden.</li>
+            <li>Naam</li>
+            <li>Stalnaam (optioneel)</li>
+            <li>Adres</li>
+            <li>Postcode + plaats</li>
+            <li>Telefoonnr. (optioneel)</li>
+            <li>E-mailadres</li>
+            <li>Website (optioneel)</li>
+            <li>Facebookpagina (optioneel)</li>
+          </ol>
+        </li>
+      </ul>
+      <p>Deze gegevens kunt u mailen naar toevoegen@tophengsten.nl en wij zorgen ervoor dat uw hengst zo snel mogelijk op de website zichtbaar wordt.</p>
+    </div>
+    <div class="col-md-4 hidden-sm advertisement">
+      <p class="fancy"><span>Advertentie</span></p>
+      <div class="adsense center-block">
+        <ng-adsense
+          [display]="'block'"
+          [adFormat]="'fluid'"
+          [layoutKey]="'-8h+2h-h0+ap+xt'"
+          [adSlot]="8803769828"
+        ></ng-adsense>
+        <hr/>
+        <ng-adsense
+          [display]="'block'"
+          [layout]="'in-article'"
+          [adFormat]="'fluid'"
+          [adSlot]="2126680837"
+        ></ng-adsense>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="well">
+      <h3>Ondersteuning</h3>
+      Omdat we de kwaliteit van de website hoog willen houden, stellen we hoge eisen aan wat u ons moet opsturen. <br/>
+      We kunnen ons goed voorstellen dat het niet voor ieder even eenvoudig is om een goede tekst aan te leveren of de foto's met de juiste grootte te maken.<br/>
+      Voor &euro; 10,- kunt u ons toesturen wat u heeft en dan maken wij het zo dat het goed en duidelijk op de website komt te staan.
+      <hr/>
+      <h3>Advertenties</h3>
+      Om deze website gratis te houden, staan er op de verschillende pagina's advertentie van onze partners. <br/>
+      Wilt u ook adverteren op onze site dan kan dat, vraag naar de mogelijkheden.<br/>
+      Voor &euro; 10,- per jaar kunnen we de detailpagina van uw hengst ook advertentievrij maken. Vraag naar de mogelijkheden.<br/>
+      <small class="text-muted pull-right">Alle prijzen zijn excl. BTW. U krijgt een factuur van Bontepaarden.nl</small>
+      <br class="clearfix" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 advertisement-leaderboard">
+      <p class="fancy"><span>Advertentie</span></p>
+      <div class="adsense center-block">
+        <ng-adsense
+          [adSlot]="9432557872"
+          [width]="728"
+          [height]="90"
+        ></ng-adsense>
+      </div>
+    </div>
+  </div>
+
+</div>

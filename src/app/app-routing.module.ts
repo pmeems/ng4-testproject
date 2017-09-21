@@ -12,10 +12,12 @@ import {OwnerDetailsComponent} from "./owners/details/owner-details.component";
 import {StallionEditComponent} from "./stallions/edit/stallion-edit.component";
 import {AdminComponent} from "./admin/admin.component";
 import {OwnerEditComponent} from "./owners/edit/owner-edit.component";
+import {ReadmeComponent} from "./readme/readme.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
   {path: "admin", component: AdminComponent},
+  {path: "toevoegen", component: ReadmeComponent},
   {path: "hengsten", component: StallionsListingsComponent},
   {path: "hengsten/new", component: StallionEditComponent},
   {path: "hengsten/:alias", component: StallionDetailsComponent},
