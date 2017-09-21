@@ -24,7 +24,8 @@
              align="left" class="img-circle">
         <span [innerHTML]="stallion.description"></span>
         <small *ngIf="stallion.copyright" class="text-muted credit pull-right"><i
-          class="glyphicon glyphicon-copyright-mark"></i> Tekst en fotografie {{stallion.copyright}} </small>
+          class="glyphicon glyphicon-copyright-mark"></i> Tekst en fotografie {{stallion.copyright}}</small>
+        <br class="clearfix"/>
       </div>
 
       <div class="well">
@@ -44,7 +45,12 @@
           <div class="col-md-4 hidden-sm advertisement">
             <p class="fancy"><span>Advertentie</span></p>
             <div class="adsense center-block">
-              <ng-adsense></ng-adsense>
+              <ng-adsense
+                [display]="'inline-block'"
+                [height]="250"
+                [width]="300"
+                [adSlot]="3349753855"
+              ></ng-adsense>
              </div>
           </div>
         </div>
@@ -117,5 +123,18 @@
       </div>
     </div>
   </span>
+  </div>
+  <div class="row">
+    <div class="col-md-4">&nbsp;</div>
+    <div class="col-md-8 advertisement-leaderboard">
+      <p class="fancy"><span>Advertentie</span></p>
+      <div class="adsense center-block">
+        <ng-adsense
+          [adSlot]="9432557872"
+          [width]="728"
+          [height]="90"
+        ></ng-adsense>
+      </div>
+    </div>
   </div>
 </div>
